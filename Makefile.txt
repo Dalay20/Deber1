@@ -1,15 +1,19 @@
 
-main: main.o datos.o calculos.o
-    -o main main.o datos.o calculos.o
+CC = gcc
+CFLAGS = -Wall
+
+TARGET = main
+$(TARGET): main.o datos.o calculos.o
+	$(CC) $(CFLAGS) -o $(TARGET) main.o datos.o calculos.o
 
 main.o: main.c datos.h calculos.h
-    -c main.c
+	$(CC) $(CFLAGS) -c main.c
 
 datos.o: datos.c datos.h
-    -c datos.c
+	$(CC) $(CFLAGS) -c datos.c
 
 calculos.o: calculos.c calculos.h
-    -c calculos.c
+	$(CC) $(CFLAGS) -c calculos.c
 
 clean:
-	rm -f *.o *.s main
+	rm -f *.o *.s $(TARGET)
